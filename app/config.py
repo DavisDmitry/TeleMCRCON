@@ -26,7 +26,7 @@ class Configuration:
 
     def __init__(self,
                  token: str,
-                 admins_list: List[int, str],
+                 admins_list: List[Union[int, str]],
                  rcon_host: str,
                  rcon_pass: str,
                  rcon_port: Union[int, str] = 25575,
