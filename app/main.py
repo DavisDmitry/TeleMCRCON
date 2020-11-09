@@ -35,7 +35,10 @@ async def start(message: types.Message):
 async def text(message: types.Message):
     if message.from_user.id in config.admins_list:
         bot = await message.bot.get_me()
+        command = message.text.replace('@ ' + bot.username, '')
         command = message.text.replace('@' + bot.username, '')
+        if command[0] == '/':
+            command = command[1:]
         logger.info(message.from_user.username + ' send: `%s`.' % command)
         with MCRcon(
                 config.rcon_host,
