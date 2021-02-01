@@ -1,11 +1,14 @@
-FROM python:3.8-buster
+FROM python:3.8
 
-COPY ./app /app
+RUN useradd -m -s /bin/bash -U appuser
 
-COPY ./requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r /app/requirements.txt
 
-WORKDIR /app
+COPY app /app
 
-RUN pip install -r requirements.txt
+WORKDIR app
 
-CMD python main.py
+USER appuser
+
+ENTRYPOINT python main.py
